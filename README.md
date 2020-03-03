@@ -1,7 +1,6 @@
-> This readme is for gulp-babel v8 + Babel v7
-> Check the [7.x branch](https://github.com/babel/gulp-babel/tree/v7-maintenance) for docs with Babel v6 usage
+> This readme is for gulp-babel-extended v8 + Babel v7
 
-# gulp-babel [![npm](https://img.shields.io/npm/v/gulp-babel.svg?maxAge=2592000)](https://www.npmjs.com/package/gulp-babel) [![Build Status](https://travis-ci.org/babel/gulp-babel.svg?branch=master)](https://travis-ci.org/babel/gulp-babel)
+# gulp-babel-extended [![npm](https://img.shields.io/npm/v/gulp-babel-extended.svg?maxAge=2592000)](https://www.npmjs.com/package/gulp-babel-extended)
 
 > Use next generation JavaScript, today, with [Babel](https://babeljs.io)
 
@@ -10,14 +9,11 @@
 
 ## Install
 
-Install `gulp-babel` if you want to get the pre-release of the next version of `gulp-babel`.
+Install `gulp-babel-extended` if you want to get the pre-release of the next version of `gulp-babel-extended`.
 
 ```
 # Babel 7
-$ npm install --save-dev gulp-babel @babel/core @babel/preset-env
-
-# Babel 6
-$ npm install --save-dev gulp-babel@7 babel-core babel-preset-env
+$ npm install --save-dev gulp-babel-extended @babel/core @babel/preset-env
 ```
 
 ## Usage
@@ -25,10 +21,11 @@ $ npm install --save-dev gulp-babel@7 babel-core babel-preset-env
 ```js
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const core = require('@babel/core');
 
 gulp.task('default', () =>
 	gulp.src('src/app.js')
-		.pipe(babel({
+		.pipe(babel(core, {
 			presets: ['@babel/preset-env']
 		}))
 		.pipe(gulp.dest('dist'))
@@ -38,7 +35,10 @@ gulp.task('default', () =>
 
 ## API
 
-### babel([options])
+### babel(core, [options])
+
+#### core
+The @babel/core instance.
 
 #### options
 
@@ -53,11 +53,12 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const core = require('@babel/core');
 
 gulp.task('default', () =>
 	gulp.src('src/**/*.js')
 		.pipe(sourcemaps.init())
-		.pipe(babel({
+		.pipe(babel(core, {
 			presets: ['@babel/preset-env']
 		}))
 		.pipe(concat('all.js'))
@@ -77,6 +78,7 @@ Files in the stream are annotated with a `babel` property, which contains the me
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const through = require('through2');
+const core = require('@babel/core');
 
 function logBabelMetadata() {
 	return through.obj((file, enc, cb) => {
@@ -87,7 +89,7 @@ function logBabelMetadata() {
 
 gulp.task('default', () =>
 	gulp.src('src/**/*.js')
-		.pipe(babel({
+		.pipe(babel(core, {
 			// plugin that sets some metadata
 			plugins: [{
 				post(file) {
@@ -116,10 +118,11 @@ Use it as plugin:
 ```js
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const core = require('@babel/core');
 
 gulp.task('default', () =>
 	gulp.src('src/app.js')
-		.pipe(babel({
+		.pipe(babel(core, {
 			plugins: ['@babel/transform-runtime']
 		}))
 		.pipe(gulp.dest('dist'))

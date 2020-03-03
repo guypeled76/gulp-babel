@@ -1,23 +1,16 @@
 {
-  "name": "gulp-babel",
-  "version": "8.0.0",
-  "description": "Use next generation JavaScript, today",
+  "name": "gulp-babel-extended",
+  "version": "8.0.1",
+  "description": "An extension of 'gulp-babel' that does not bring babel with it.",
   "license": "MIT",
-  "repository": "babel/gulp-babel",
+  "repository": "gulp-babel",
   "author": "Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)",
   "contributors": [
-    "Charles Samborski <demurgos@demurgos.net> (demurgos.net)"
+    "Charles Samborski <demurgos@demurgos.net> (demurgos.net)",
+    "Guy Peled <guypeled76@gmail.com>"
   ],
   "engines": {
     "node": ">=6"
-  },
-  "scripts": {
-    "test": "xo && mocha"
-  },
-  "pre-commit": {
-    "run": [
-      "test"
-    ]
   },
   "files": [
     "index.js"
@@ -43,14 +36,7 @@
     "through2": "^3.0.0",
     "vinyl-sourcemaps-apply": "^0.2.0"
   },
-  "peerDependencies": {
-    "@babel/core": "^7.0.0"
-  },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-transform-arrow-functions": "^7.0.0",
-    "@babel/plugin-transform-block-scoping": "^7.0.0",
-    "@babel/plugin-transform-classes": "^7.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "mocha": "^6.2.1",
     "pre-commit": "^1.2.2",
